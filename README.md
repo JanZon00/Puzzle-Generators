@@ -12,10 +12,12 @@ At the top of each generator script, you'll find configurable parameters. You ca
 Each generator saves the generated puzzle to a .csv file in a format that allows easy copying of clues. Additionally, a .png image of the puzzle is also generated.
 The algorithm used in each generator, along with its specific characteristics, is described at the top of the corresponding script file.
 
-Three out of the five generators use publicly available solvers found online.
+Each generator uses a solver to validate the solution after generation. Three puzzles use solvers available online.
 
-- The **Nurikabe** and **Numberlink** generators are distributed under the **MIT License**, allowing free and flexible usage.
-- The **Slitherlink** generator uses the **GNU Affero General Public License (AGPL)**, which applies to the entire project and is included in the root directory.
+- The **Nurikabe** and **Numberlink** solvers are distributed under the **MIT License**, allowing free and flexible usage.
+- The **Slitherlink** solver uses the **GNU Affero General Public License (AGPL)**, which applies to the entire project and is included in the root directory.
+
+The project primarily serves as a tool for generating puzzles, which is its original purpose. It may not be ideal for solving puzzles, and using better tools would then be required.
 
 ## Demo
 
@@ -55,11 +57,6 @@ Here are sample outputs for each puzzle:
    Example:
    cd shikaku
    python shikaku_genetic.py
-
-## License
-
-Nurikabe and Numberlink solvers: MIT License
-Slitherlink: GNU AGPL v3 — full license available in the root directory
 
 ## Author: 
 Jan Zoń 
