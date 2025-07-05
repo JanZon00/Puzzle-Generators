@@ -17,15 +17,24 @@ Three out of the five generators use publicly available solvers found online.
 - The **Nurikabe** and **Numberlink** generators are distributed under the **MIT License**, allowing free and flexible usage.
 - The **Slitherlink** generator uses the **GNU Affero General Public License (AGPL)**, which applies to the entire project and is included in the root directory.
 
-## 📸 Demo
+## Demo
 
 Here are sample outputs for each puzzle:
 
-- **Sudoku:** ![](images/sudoku.png)  
-- **Slitherlink:** ![](images/slitherlink.png)  
-- **Shikaku:** ![](images/shikaku.png)  
-- **Nurikabe:** ![](images/nurikabe.png)  
-- **Numberlink:** ![](images/numberlink.png)
+- **Sudoku:**  
+  <img src="images/sudoku.png" width="300"/>
+
+- **Slitherlink:**  
+  <img src="images/slitherlink.png" width="300"/>
+
+- **Shikaku:**  
+  <img src="images/shikaku.png" width="300"/>
+
+- **Nurikabe:**  
+  <img src="images/nurikabe.png" width="300"/>
+
+- **Numberlink:**  
+  <img src="images/numberlink.png" width="300"/>
 
 ## Requirements
 
