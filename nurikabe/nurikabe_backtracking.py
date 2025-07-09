@@ -8,11 +8,13 @@ The higher the FILLING value, the more water is placed in the puzzle, which gene
 5. Using a solver to check for a valid solution. If the puzzle is valid but unsolvable, a new one is generated.
 '''
 import random
+import statistics
 import subprocess
+import time
 import matplotlib.pyplot as plt
 import os
 
-PUZZLE_SIZE = 7
+PUZZLE_SIZE = 5
 FILLING = 0.7 #The lower the number, the harder is nurikabe. At certain point, usually lower than 0.3 it's hard or impossible to generate valid nurikabe.
 PUZZLE_FILE_PATH = "nurikabe_backtracking.csv"
 PUZZLE_IMAGE_PATH = "nurikabe.png"
@@ -36,19 +38,32 @@ def has_2x2_block(grid):
 
 def dfs(grid, x, y, visited):
     '''Creates a random path of elements serving as water in the puzzle. Checks that no 2x2 blocks are formed from these elements.'''
+    
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
     random.shuffle(directions)
+
+    success = False
 
     for dx, dy in directions:
         nx, ny = x + dx, y + dy
         if is_valid(nx, ny) and (nx, ny) not in visited:
             if random.random() < FILLING:
                 grid[nx][ny] = '.'
+                visited.add((nx, ny))
+
                 if has_2x2_block(grid) >= 1:
                     grid[nx][ny] = 0
+                    visited.remove((nx, ny))
                     continue
-                visited.add((nx, ny))
-                dfs(grid, nx, ny, visited)
+
+                if dfs(grid, nx, ny, visited):
+                    success = True
+
+                else:
+                    grid[nx][ny] = 0
+                    visited.remove((nx, ny))
+
+    return True if success or len(visited) > 1 else False
 
 def find_islands(grid):
     '''Creates a list of available islands'''
@@ -145,4 +160,18 @@ def generate_puzzle():
         else:
             print("Not unique, regenerating...")
 
-generate_puzzle()
+gen_times = []
+
+for i in range(10):
+    start_gen = time.time()
+    sudoku = generate_puzzle()
+    end_gen = time.time()
+    gen_times.append(end_gen - start_gen)
+
+srednia = statistics.mean(gen_times)
+minimum = min(gen_times)
+maksimum = max(gen_times)
+odchylenie = statistics.stdev(gen_times)
+
+print(f"Średni czas generowania: {srednia:.4f} s")
+print(f"Min: {minimum:.4f} s, Max: {maksimum:.4f} s, Odchylenie: {odchylenie:.4f} s")

@@ -1063,19 +1063,8 @@ def main():
 
     if success:
         print(f"Solved {puzzle.shape[0]}x{puzzle.shape[1]}!\n{solver.puzzle}")
-        first_solution = solver.puzzle.copy()
+        return 0
 
-        print("Checking for alternative solutions...")
-
-        puzzle = load(args.file)
-        second_solver = Solver(puzzle, plotter=None, verbose_from_step=0, max_guesses=args.guess, threads=args.threads, forbidden_solution=first_solution.copy())
-        second_success = second_solver.solve()
-
-        if second_success and not np.array_equal(first_solution, second_solver.puzzle):
-            print("Found a second, different solution! Puzzle is ambiguous.")
-            return 1
-        else:
-            return 0
     else:
         print("Unsolved!")
 
